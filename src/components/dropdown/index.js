@@ -629,7 +629,15 @@ export default class Dropdown extends PureComponent {
     ];
 
     return (
-      <DropdownItem index={index} {...props}>
+      <DropdownItem index={index} {...props}
+      accessible={true}
+      testID={"dropdownItem"}
+      accessibilityLabel={"dropdownItem"}
+      accessibilityValue={{ text: title }}
+      accessibilityState={{
+        selected: index === selected,
+      }}
+      >
         <Text style={[styles.item, itemTextStyle, textStyle]} numberOfLines={1}>
           {title}
         </Text>
@@ -751,6 +759,8 @@ export default class Dropdown extends PureComponent {
               <FlatList
                 ref={this.updateScrollRef}
                 data={data}
+                testID={"dropdownList"}
+                accessibilityLabel={"dropdownList"}
                 style={styles.scroll}
                 renderItem={this.renderItem}
                 keyExtractor={this.keyExtractor}
